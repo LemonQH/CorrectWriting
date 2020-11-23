@@ -11,8 +11,8 @@ importlib.reload(sys)
 YOUDAO_URL_IMAGE = 'https://openapi.youdao.com/correct_writing_image'
 YOUDAO_URL_TEXT = 'https://openapi.youdao.com/correct_writing_text'
 
-APP_KEY = 'xxx'                                              # app  key
-APP_SECRET = 'xxx'                                           # secret
+APP_KEY = 'XXXX'                                      # app  key
+APP_SECRET = 'XXXX'                                  # secret
 
 
 def truncate(q):
@@ -55,8 +55,10 @@ def connect_pic(pic_path,grade):
     data['grade'] = grade
     data['signType'] = 'v3'
 
-    response = do_request(data,YOUDAO_URL_IMAGE)
-    result=json.loads(str(response.content,'utf-8'))['Result']
+    response = do_request(data, YOUDAO_URL_IMAGE)
+    # print(response.content)
+    result = response.content.decode('utf-8')
+    print(result)
     return result
 
 
@@ -77,8 +79,8 @@ def connect_context(file_path,grade):
     data['signType'] = "v3"
     data['grade'] = grade
     response = do_request(data,YOUDAO_URL_TEXT)
-    print(response.content)
-    result = json.loads(str(response.content, 'utf-8'))['Result']
+    # print(response.content)
+    result=response.content.decode('utf-8')
     print(result)
     return result
 
